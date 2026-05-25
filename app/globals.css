@@ -18,6 +18,16 @@
   /* Backwards-compatibility aliases used in existing components */
   --background:   var(--bg-base);
   --accent-muted: var(--accent-deep);
+
+  /* ── Fluid type scale ── */
+  --type-xs:      0.6875rem;                       /* 11px — nav labels, captions          */
+  --type-sm:      0.8125rem;                       /* 13px — small body copy               */
+  --type-base:    1rem;                            /* 16px — base body                     */
+  --type-lg:      1.25rem;                         /* 20px — lead / intro text             */
+  --type-xl:      clamp(1.75rem, 3vw,   2.25rem);  /* subheading                           */
+  --type-2xl:     clamp(2.25rem, 4vw,   3rem);     /* section heading                      */
+  --type-3xl:     clamp(2.75rem, 5.5vw, 4.5rem);   /* large section heading                */
+  --type-display: clamp(3.5rem,  8vw,   7rem);     /* hero / cinematic display             */
 }
 
 /* ─── Tailwind v4 theme extension ────────────────────────────── */
@@ -63,19 +73,77 @@ body {
   overflow-x: hidden;
 }
 
-/* ─── Typography rhythm ──────────────────────────────────────── */
-h1, h2, h3, h4 {
+/* ─── Typography ────────────────────────────────────────────── */
+
+/*
+  Two-font system:
+    Serif  — Cormorant Garamond  (var(--font-cormorant))
+             Hero headlines, poetic statements, presence quotes.
+             Elegant, high-contrast, designed for italic display use.
+    Sans   — Inter               (var(--font-inter))
+             Body copy, navigation, labels, all UI text.
+             Neutral, highly legible, confident at small sizes.
+*/
+
+/* Global sans base */
+body, input, button, select, textarea {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: var(--type-base);
+  font-weight: 300;
+  line-height: 1.65;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+}
+
+/* Navigation and label elements — tracked caps treatment */
+nav, label, figcaption, caption {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-feature-settings: "kern" 1;
+}
+
+/* Prose paragraphs */
+p {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* Heading elements — serif by default */
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-cormorant), Georgia, serif;
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -0.01em;
   color: var(--foreground);
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "swsh" 0;
 }
 
-p {
-  font-family: var(--font-inter), system-ui, sans-serif;
+h1 { font-size: var(--type-display); line-height: 1.02; }
+h2 { font-size: var(--type-3xl);    line-height: 1.08; }
+h3 { font-size: var(--type-2xl);    line-height: 1.12; }
+h4 { font-size: var(--type-xl);     line-height: 1.2;  }
+
+/* Blockquotes — italic serif for spoken/poetic content */
+blockquote {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: italic;
   font-weight: 300;
-  line-height: 1.7;
+  font-size: var(--type-xl);
+  line-height: 1.45;
+  color: var(--foreground-muted);
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* em inside body copy switches to Cormorant for elegance */
+p em, li em {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: italic;
+  font-size: 1.08em;
+}
+
+small {
+  font-size: var(--type-xs);
+  letter-spacing: 0.04em;
 }
 
 ::selection {
@@ -87,6 +155,61 @@ p {
   outline: 1px solid var(--accent);
   outline-offset: 3px;
 }
+
+/* ─── Type utility classes ───────────────────────────────────── */
+
+/* Cinematic hero headline — large, italic Cormorant */
+.text-display {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: var(--type-display);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+}
+
+/* Section heading — upright Cormorant */
+.text-heading {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: var(--type-3xl);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* Presence / poetic statement — italic Cormorant, mid-size */
+.text-quote {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.35;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* Navigation / section label — Inter, tracked caps */
+.text-label {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: var(--type-xs);
+  font-weight: 400;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-feature-settings: "kern" 1;
+}
+
+/* Lead paragraph — slightly larger body copy */
+.text-lead {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: var(--type-lg);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* Quick font switches */
+.serif { font-family: var(--font-cormorant), Georgia, serif; }
+.sans  { font-family: var(--font-inter), system-ui, sans-serif; }
 
 /* ─── Film grain ─────────────────────────────────────────────── */
 /* .film-grain and .grain are equivalent — both supported */
