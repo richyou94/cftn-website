@@ -1,55 +1,113 @@
-import Image from "next/image";
 import FadeIn from "@/src/components/FadeIn";
-import { bwPhotos } from "@/app/lib/photos";
 
-// bw-02 — woman singing, eyes closed. The quietest, most contemplative frame.
-const photo = bwPhotos[1];
-
+/**
+ * PresenceSection — a typographic pause.
+ *
+ * Placed immediately after the cinematic hero, this section asks the image
+ * to recede and lets only words hold the room. Three staggered stanzas
+ * build toward the pivot line, then settle into the declaration.
+ *
+ * No photo. No decoration. Just the statement.
+ */
 export default function PresenceSection() {
   return (
-    <section className="relative h-[75vh] min-h-[500px] overflow-hidden">
-      <Image
-        src={photo.src}
-        alt={photo.alt}
-        fill
-        className="object-cover object-[center_25%]"
-        sizes="100vw"
-      />
+    <section
+      className="section-padding"
+      style={{
+        // Radial warmth: imperceptibly lighter at center, pure dark at edges
+        background:
+          "radial-gradient(ellipse 80% 60% at 50% 50%, var(--bg-alt) 0%, var(--bg-base) 100%)",
+      }}
+    >
+      <div className="max-w-2xl mx-auto text-center">
 
-      {/* Layered overlays for depth */}
-      <div
-        className="absolute inset-0"
-        style={{ background: "rgba(15,14,13,0.50)" }}
-      />
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, transparent 20%, rgba(15,14,13,0.65) 100%)",
-        }}
-      />
+        {/* Label */}
+        <FadeIn>
+          <p
+            className="text-label"
+            style={{ color: "rgba(200,164,107,0.50)" }}
+          >
+            On the nature of our gathering
+          </p>
+        </FadeIn>
 
-      {/* Scripture — centered, no decoration, just the word */}
-      <FadeIn
-        className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
-        y={10}
-        duration={1.6}
-      >
-        <p
-          className="text-3xl sm:text-4xl md:text-5xl font-light italic leading-[1.35] max-w-2xl"
-          style={{ color: "rgba(240,234,216,0.82)", fontFamily: "var(--font-cormorant)" }}
-        >
-          &ldquo;Where the Spirit of the Lord is,
-          <br />
-          there is freedom.&rdquo;
-        </p>
-        <p
-          className="mt-6 text-xs tracking-[0.3em] uppercase"
-          style={{ color: "var(--accent)", fontFamily: "var(--font-inter)", opacity: 0.62 }}
-        >
-          2 Corinthians 3:17
-        </p>
-      </FadeIn>
+        {/* Thin rule — breathes after label */}
+        <FadeIn delay={0.05}>
+          <div
+            className="mx-auto mt-10 mb-16"
+            style={{ width: "1px", height: "48px", background: "rgba(200,164,107,0.18)" }}
+          />
+        </FadeIn>
+
+        {/* ── Stanza 1 — what we don't gather around ───── */}
+        {/* Muted — sets up the contrast */}
+        <FadeIn delay={0.1} duration={1.7} y={18}>
+          <p
+            className="font-light italic leading-[1.45]"
+            style={{
+              fontFamily: "var(--font-cormorant)",
+              fontSize: "clamp(1.6rem, 3.2vw, 2.5rem)",
+              color: "rgba(242,240,235,0.48)",
+            }}
+          >
+            We gather not around a name,
+            <br />
+            a stage, or a personality —
+          </p>
+        </FadeIn>
+
+        {/* ── Stanza 2 — the pivot ──────────────────────── */}
+        {/* Full brightness. "the presence of Jesus" in gold. */}
+        <FadeIn delay={0.35} duration={1.8} y={18}>
+          <p
+            className="mt-10 font-light italic leading-[1.45]"
+            style={{
+              fontFamily: "var(--font-cormorant)",
+              fontSize: "clamp(1.9rem, 3.8vw, 3rem)",
+              color: "rgba(242,240,235,0.90)",
+            }}
+          >
+            but around{" "}
+            <span style={{ color: "var(--accent)" }}>
+              the presence of Jesus
+            </span>
+            {" "}—
+          </p>
+        </FadeIn>
+
+        {/* ── Stanza 3 — the declaration ───────────────── */}
+        {/* Muted again, mirroring stanza 1 */}
+        <FadeIn delay={0.60} duration={1.7} y={18}>
+          <p
+            className="mt-10 font-light italic leading-[1.45]"
+            style={{
+              fontFamily: "var(--font-cormorant)",
+              fontSize: "clamp(1.6rem, 3.2vw, 2.5rem)",
+              color: "rgba(242,240,235,0.48)",
+            }}
+          >
+            one sound rising from many churches,
+            <br />
+            cultures, and cities.
+          </p>
+        </FadeIn>
+
+        {/* Closing — thin rule + attribution */}
+        <FadeIn delay={0.85} duration={1.4}>
+          <div
+            className="mx-auto mt-16 mb-10"
+            style={{ width: "1px", height: "48px", background: "rgba(200,164,107,0.18)" }}
+          />
+          <p
+            className="text-label"
+            style={{ color: "rgba(200,164,107,0.32)" }}
+          >
+            CFTN US
+          </p>
+        </FadeIn>
+
+      </div>
     </section>
   );
 }
+
