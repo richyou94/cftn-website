@@ -68,8 +68,8 @@ export default function HeroSection() {
         aria-hidden="true"
         style={{
           background: [
-            "linear-gradient(to top, rgba(11,11,11,0.96) 0%, rgba(11,11,11,0.18) 38%, rgba(11,11,11,0.12) 62%, rgba(11,11,11,0.58) 100%)",
-            "radial-gradient(ellipse at center, transparent 28%, rgba(11,11,11,0.72) 100%)",
+            "linear-gradient(to top, rgba(11,11,11,0.96) 0%, rgba(11,11,11,0.15) 38%, rgba(11,11,11,0.08) 62%, rgba(11,11,11,0.44) 100%)",
+            "radial-gradient(ellipse at center, transparent 32%, rgba(11,11,11,0.58) 100%)",
           ].join(", "),
         }}
       />

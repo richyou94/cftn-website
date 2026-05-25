@@ -22,7 +22,7 @@ type Frame = {
 
 const frames: Frame[] = [
   {
-    // Row 1 — left: big landscape, cinematic transcendent light
+    // Row 1 — left: the transcendent light moment — strongest single frame
     src: "/images/worship/worship-03-bright_light_middle_of_worship.JPEG",
     alt: "Transcendent light flooding a worship gathering",
     caption: "One sound across cities",
@@ -31,7 +31,7 @@ const frames: Frame[] = [
     sizes: "(max-width: 1024px) 100vw, 58vw",
   },
   {
-    // Row 1 — right: intimate portrait, hands on keys
+    // Row 1 — right: hands on keys — quiet documentary detail
     src: "/images/bw/bw-01-keyboard_with_hand.JPEG",
     alt: "Hands resting on a keyboard during worship",
     caption: "Gathered in worship",
@@ -40,25 +40,7 @@ const frames: Frame[] = [
     sizes: "(max-width: 1024px) 100vw, 38vw",
   },
   {
-    // Row 2 — left: community, square, grounding
-    src: "/images/community/community-01.jpg",
-    alt: "Community gathered together after worship",
-    caption: "Many churches, one room",
-    aspect: "aspect-square",
-    pos: "object-center",
-    sizes: "(max-width: 1024px) 100vw, 26vw",
-  },
-  {
-    // Row 2 — right: vocalist, tall portrait, human face
-    src: "/images/worship/worship-01-girl_singing.JPEG",
-    alt: "A vocalist surrendered in worship",
-    caption: "Presence over performance",
-    aspect: "aspect-[2/3]",
-    pos: "object-[center_20%]",
-    sizes: "(max-width: 1024px) 100vw, 24vw",
-  },
-  {
-    // Row 3 — solo wide: the room from far away, cinematic close
+    // Row 2 — wide: the room itself — collective, documentary, closing
     src: "/images/bw/bw-03-far_angle_worshiping.JPEG",
     alt: "Wide-angle view of the congregation in worship",
     caption: "Carrying the fire home",
@@ -96,24 +78,9 @@ export default function WorshipMomentsSection() {
 
         </div>
 
-        {/* ── Row 2 ── square + portrait, shifted right, bottom-aligned ── */}
-        <div className="mt-3 lg:mt-[18px] flex flex-col lg:flex-row lg:items-end lg:ml-[12%] gap-3 lg:gap-[18px]">
-
-          {/* C — community-01, square */}
-          <div className="w-full lg:w-[30%]">
-            <GalleryFrame frame={frames[2]} delay={0.10} />
-          </div>
-
-          {/* D — worship-01, tall portrait */}
-          <div className="w-full lg:w-[26%]">
-            <GalleryFrame frame={frames[3]} delay={0.22} />
-          </div>
-
-        </div>
-
-        {/* ── Row 3 ── wide solo, anchored right ── */}
+        {/* ── Row 2 ── wide solo, anchored right — the room itself ── */}
         <div className="mt-3 lg:mt-[18px] lg:w-[68%] lg:ml-auto">
-          <GalleryFrame frame={frames[4]} delay={0.12} />
+          <GalleryFrame frame={frames[2]} delay={0.14} />
         </div>
 
       </div>
@@ -139,12 +106,12 @@ function GalleryFrame({ frame, delay = 0 }: { frame: Frame; delay?: number }) {
             sizes={frame.sizes}
           />
 
-          {/* Permanent bottom gradient — always legible */}
+          {/* Permanent bottom gradient — legible but not atmosphere-killing */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "linear-gradient(to top, rgba(11,11,11,0.80) 0%, rgba(11,11,11,0.06) 38%, transparent 55%)",
+                "linear-gradient(to top, rgba(11,11,11,0.62) 0%, rgba(11,11,11,0.04) 36%, transparent 52%)",
             }}
           />
 
