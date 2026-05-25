@@ -1,24 +1,44 @@
 @import "tailwindcss";
 
+/* ─── Design tokens ──────────────────────────────────────────── */
 :root {
-  --background: #0f0e0d;
-  --foreground: #f0ead8;
-  --accent: #b8975a;
-  --accent-muted: #8a6e3e;
-  --surface: #1a1815;
+  /* Backgrounds — darkest to lightest */
+  --bg-base:    #0B0B0B;
+  --bg-alt:     #111315;
+  --surface:    #16181B;
+
+  /* Text */
+  --foreground:       #F2F0EB;
+  --foreground-muted: #EAE6DF;
+
+  /* Gold accent */
+  --accent:      #C8A46B;
+  --accent-deep: #B98B5E;
+
+  /* Backwards-compatibility aliases used in existing components */
+  --background:   var(--bg-base);
+  --accent-muted: var(--accent-deep);
 }
 
+/* ─── Tailwind v4 theme extension ────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-accent: var(--accent);
-  --color-accent-muted: var(--accent-muted);
-  --color-surface: var(--surface);
-  --font-sans: var(--font-cormorant);
+  /* Colors */
+  --color-background:       var(--bg-base);
+  --color-bg-alt:           var(--bg-alt);
+  --color-surface:          var(--surface);
+  --color-foreground:       var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-accent:           var(--accent);
+  --color-accent-deep:      var(--accent-deep);
+  --color-accent-muted:     var(--accent-deep);
+
+  /* Fonts */
+  --font-sans:    var(--font-inter);
   --font-display: var(--font-cormorant);
-  --font-body: var(--font-inter);
+  --font-body:    var(--font-inter);
 }
 
+/* ─── Base reset ─────────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -26,19 +46,51 @@
 }
 
 html {
+  /* scroll-behavior: auto — Lenis owns all scroll animation */
   scroll-behavior: auto;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
+  background: var(--bg-base);
   color: var(--foreground);
-  font-family: var(--font-inter), Georgia, serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* Film grain overlay */
+/* ─── Typography rhythm ──────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+p {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+::selection {
+  background: rgba(200, 164, 107, 0.22);
+  color: var(--foreground);
+}
+
+:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ─── Film grain ─────────────────────────────────────────────── */
+/* .film-grain and .grain are equivalent — both supported */
+.film-grain::after,
 .grain::after {
   content: "";
   position: fixed;
@@ -48,34 +100,101 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 128px 128px;
-  opacity: 0.038;
+  opacity: 0.042;
   pointer-events: none;
   z-index: 9999;
   animation: grain 0.5s steps(2) infinite;
 }
 
 @keyframes grain {
-  0%, 100% { transform: translate(0, 0); }
-  10%       { transform: translate(-2%, -3%); }
-  20%       { transform: translate(3%, 2%); }
-  30%       { transform: translate(-1%, 4%); }
-  40%       { transform: translate(4%, -1%); }
-  50%       { transform: translate(-3%, 3%); }
-  60%       { transform: translate(2%, -4%); }
-  70%       { transform: translate(-4%, 1%); }
-  80%       { transform: translate(1%, -2%); }
-  90%       { transform: translate(3%, 4%); }
+  0%, 100% { transform: translate(0,    0   ); }
+  10%       { transform: translate(-2%, -3% ); }
+  20%       { transform: translate( 3%,  2% ); }
+  30%       { transform: translate(-1%,  4% ); }
+  40%       { transform: translate( 4%, -1% ); }
+  50%       { transform: translate(-3%,  3% ); }
+  60%       { transform: translate( 2%, -4% ); }
+  70%       { transform: translate(-4%,  1% ); }
+  80%       { transform: translate( 1%, -2% ); }
+  90%       { transform: translate( 3%,  4% ); }
 }
 
-/* Divider line */
+/* ─── Utility classes ────────────────────────────────────────── */
+
+/* Spacious vertical section padding, mobile-first fluid scaling */
+.section-padding {
+  padding-top:    clamp(5rem, 10vw, 10rem);
+  padding-bottom: clamp(5rem, 10vw, 10rem);
+  padding-left:   1.5rem;
+  padding-right:  1.5rem;
+}
+@media (min-width: 640px) {
+  .section-padding {
+    padding-left:  2rem;
+    padding-right: 2rem;
+  }
+}
+@media (min-width: 1024px) {
+  .section-padding {
+    padding-left:  3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* Centered wide container with responsive horizontal gutters */
+.container-wide {
+  width: 100%;
+  max-width: 1280px;
+  margin-left:  auto;
+  margin-right: auto;
+  padding-left:  1.5rem;
+  padding-right: 1.5rem;
+}
+@media (min-width: 640px) {
+  .container-wide {
+    padding-left:  2rem;
+    padding-right: 2rem;
+  }
+}
+@media (min-width: 1280px) {
+  .container-wide {
+    padding-left:  3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* Muted secondary text */
+.text-muted {
+  color: var(--foreground-muted);
+  opacity: 0.48;
+}
+
+/* Gold accent text */
+.gold-accent {
+  color: var(--accent);
+}
+
+/* Thin gold divider bar */
 .divider {
   width: 40px;
   height: 1px;
   background: var(--accent);
   opacity: 0.5;
+  flex-shrink: 0;
 }
 
-/* Smooth image rendering */
+/* ─── Miscellaneous ──────────────────────────────────────────── */
 img {
   display: block;
+}
+
+/* Minimal scrollbar styled to match palette */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb {
+  background: rgba(200, 164, 107, 0.20);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 164, 107, 0.40);
 }
