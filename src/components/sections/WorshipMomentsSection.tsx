@@ -125,7 +125,7 @@ function GalleryFrame({ frame, delay = 0 }: { frame: Frame; delay?: number }) {
           <figcaption className="absolute bottom-0 left-0 right-0 px-5 pb-[18px]">
             <p
               className="text-label transition-all duration-500 ease-out translate-y-1 group-hover:translate-y-0"
-              style={{ color: "rgba(242,240,235,0.30)" }}
+              style={{ color: "rgba(242,240,235,0.40)" }}
             >
               {frame.caption}
             </p>

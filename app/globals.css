@@ -193,8 +193,8 @@ small {
 .text-label {
   font-family: var(--font-inter), system-ui, sans-serif;
   font-size: var(--type-xs);
-  font-weight: 400;
-  letter-spacing: 0.26em;
+  font-weight: 300;
+  letter-spacing: 0.20em;
   text-transform: uppercase;
   font-feature-settings: "kern" 1;
 }
@@ -226,7 +226,7 @@ small {
   opacity: 0.042;
   pointer-events: none;
   z-index: 9999;
-  animation: grain 0.5s steps(2) infinite;
+  animation: grain 0.7s steps(2) infinite;
 }
 
 @keyframes grain {

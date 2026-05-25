@@ -83,7 +83,7 @@ export default function HeroSection() {
         {/* Eyebrow — tracked serif-body label */}
         <motion.p
           className="text-label mb-8"
-          style={{ color: "rgba(200,164,107,0.70)" }}
+          style={{ color: "rgba(200,164,107,0.52)" }}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...T.eyebrow, ease }}
@@ -162,7 +162,7 @@ export default function HeroSection() {
 
       {/* ── Scroll cue — breathing vertical line ─────────── */}
       <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        className="absolute bottom-[76px] left-1/2 -translate-x-1/2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={T.cue}

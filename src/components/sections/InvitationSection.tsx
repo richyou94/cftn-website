@@ -82,13 +82,13 @@ export default function InvitationSection() {
         <FadeIn delay={0.48}>
           <a
             href="#"
-            className="group inline-block px-9 py-3.5 text-label transition-all duration-300 hover:border-opacity-80"
+            className="group inline-block px-9 py-3.5 text-label transition-colors duration-400"
             style={{
-              border: "1px solid rgba(200,164,107,0.35)",
-              color: "rgba(242,240,235,0.62)",
+              border: "1px solid rgba(200,164,107,0.30)",
+              color: "rgba(242,240,235,0.55)",
             }}
           >
-            <span className="transition-colors duration-300 group-hover:text-[rgba(200,164,107,0.9)]">
+            <span className="transition-colors duration-400 group-hover:text-[rgba(200,164,107,0.85)]">
               Get Connected
             </span>
           </a>

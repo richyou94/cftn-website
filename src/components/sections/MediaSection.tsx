@@ -109,7 +109,7 @@ function MediaCard({ card }: { card: Card }) {
       aria-label={card.title}
     >
       {/* ── Photo background ── */}
-      <div className="relative aspect-[16/9] overflow-hidden" style={{ background: "var(--surface)" }}>
+      <div className="relative aspect-[3/2] md:aspect-[16/9] overflow-hidden" style={{ background: "var(--surface)" }}>
 
         <Image
           src={card.src}
