@@ -27,8 +27,8 @@ export type Photo = {
 
 export const heroPhotos: Photo[] = [
   {
-    src: "/images/hero/hero-01-wide_angle_middle_of_sermon.JPEG",
-    alt: "Wide-angle view of a worship gathering mid-sermon",
+    src: "/images/hero/hero-01-wide_angle_worship_circle.jpg",
+    alt: "Wide-angle worship circle gathered together",
     category: "hero",
     suggestedUse: "Primary hero background — strongest cinematic opener",
     mood: "cinematic, atmospheric, monumental",
