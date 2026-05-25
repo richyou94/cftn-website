@@ -5,9 +5,10 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { heroPhotos } from "@/app/lib/photos";
 
-const photo = heroPhotos[0]; // hero-01-wide_angle — strongest cinematic opener
+// hero-01 — wide-angle gathering, strongest cinematic opener
+const photo = heroPhotos[0];
 
-export default function Hero() {
+export default function HeroSection() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -15,7 +16,7 @@ export default function Hero() {
   });
 
   const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const textY  = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   return (
@@ -23,7 +24,7 @@ export default function Hero() {
       ref={ref}
       className="relative h-screen min-h-[640px] overflow-hidden flex items-center justify-center"
     >
-      {/* Background image with parallax */}
+      {/* Parallax background */}
       <motion.div
         className="absolute inset-0 w-full h-[120%] -top-[10%]"
         style={{ y: imageY }}
@@ -36,23 +37,23 @@ export default function Hero() {
           sizes="100vw"
           priority
         />
-        {/* Overlaid vignette */}
+        {/* Edge vignette */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse at center, transparent 30%, rgba(15,14,13,0.8) 100%)",
+              "radial-gradient(ellipse at center, transparent 30%, rgba(15,14,13,0.82) 100%)",
           }}
         />
       </motion.div>
 
-      {/* Content */}
+      {/* Hero copy */}
       <motion.div
         className="relative z-10 text-center px-6 max-w-3xl mx-auto"
         style={{ y: textY, opacity }}
       >
         <motion.p
-          className="mb-6 tracking-[0.3em] uppercase text-xs"
+          className="mb-6 text-xs tracking-[0.3em] uppercase"
           style={{ color: "var(--accent)", fontFamily: "var(--font-inter)" }}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -62,11 +63,8 @@ export default function Hero() {
         </motion.p>
 
         <motion.h1
-          className="text-6xl sm:text-7xl md:text-8xl font-light leading-[1.05] italic"
-          style={{
-            color: "var(--foreground)",
-            fontFamily: "var(--font-cormorant)",
-          }}
+          className="text-6xl sm:text-7xl md:text-8xl font-light italic leading-[1.05]"
+          style={{ color: "var(--foreground)", fontFamily: "var(--font-cormorant)" }}
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.6, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -85,10 +83,7 @@ export default function Hero() {
 
         <motion.p
           className="mt-8 text-base sm:text-lg font-light leading-relaxed max-w-md mx-auto"
-          style={{
-            color: "rgba(240,234,216,0.55)",
-            fontFamily: "var(--font-inter)",
-          }}
+          style={{ color: "rgba(240,234,216,0.52)", fontFamily: "var(--font-inter)" }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.4, delay: 1.6, ease: "easeOut" }}
@@ -99,16 +94,16 @@ export default function Hero() {
         </motion.p>
       </motion.div>
 
-      {/* Scroll cue */}
+      {/* Scroll cue — animated vertical line */}
       <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 2.2 }}
+        transition={{ duration: 1, delay: 2.4 }}
       >
         <motion.div
           className="w-px h-12 origin-top"
-          style={{ background: "var(--accent)", opacity: 0.4 }}
+          style={{ background: "var(--accent)", opacity: 0.38 }}
           animate={{ scaleY: [0, 1, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         />

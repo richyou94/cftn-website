@@ -1,31 +1,29 @@
-import SmoothScroll from "./components/SmoothScroll";
-import Hero from "./components/sections/Hero";
-import About from "./components/sections/About";
-import Gatherings from "./components/sections/Gatherings";
-import Community from "./components/sections/Community";
-import Connect from "./components/sections/Connect";
-import Footer from "./components/sections/Footer";
+import SmoothScroll from "@/src/components/SmoothScroll";
+import HeroSection from "@/src/components/sections/HeroSection";
+import PresenceSection from "@/src/components/sections/PresenceSection";
+import WorshipMomentsSection from "@/src/components/sections/WorshipMomentsSection";
+import CitiesSection from "@/src/components/sections/CitiesSection";
+import MediaSection from "@/src/components/sections/MediaSection";
+import InvitationSection from "@/src/components/sections/InvitationSection";
+import Footer from "@/src/components/sections/Footer";
+import FixedMusicPlayer from "@/src/components/media/FixedMusicPlayer";
 
 export default function Home() {
   return (
-    <SmoothScroll>
-      <main>
-        <Hero />
-        <section id="about">
-          <About />
-        </section>
-        <section id="gatherings">
-          <Gatherings />
-        </section>
-        <section id="community">
-          <Community />
-        </section>
-        <section id="connect">
-          <Connect />
-        </section>
-      </main>
-      <Footer />
-    </SmoothScroll>
+    <>
+      <SmoothScroll>
+        <main className="pb-14">
+          <HeroSection />
+          <PresenceSection />
+          <WorshipMomentsSection />
+          <CitiesSection />
+          <MediaSection />
+          <InvitationSection />
+          <Footer />
+        </main>
+      </SmoothScroll>
+      <FixedMusicPlayer />
+    </>
   );
 }
 
